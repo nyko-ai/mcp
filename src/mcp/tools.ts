@@ -94,4 +94,19 @@ export const TOOLS: McpTool[] = [
       required: ["pattern_id", "dependencies"],
     },
   },
+  {
+    name: "nyko_setup",
+    description:
+      "Get external/dashboard setup steps for a pattern. Use when user needs help with manual configuration steps like enabling OAuth providers, creating API keys, configuring webhooks, etc.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        pattern_id: {
+          type: "string",
+          description: "Pattern ID (e.g., 'supabase-google-oauth')",
+        },
+      },
+      required: ["pattern_id"],
+    },
+  },
 ];

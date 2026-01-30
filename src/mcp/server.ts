@@ -12,6 +12,7 @@ import { handleSearch } from "../handlers/search";
 import { handleGet } from "../handlers/get";
 import { handleSequence } from "../handlers/sequence";
 import { handleCheck } from "../handlers/check";
+import { handleSetup } from "../handlers/setup";
 import { errorResponse, successResponse } from "../utils/response";
 
 const SERVER_INFO = {
@@ -109,6 +110,13 @@ async function handleToolCall(
         result = await handleCheck(
           args.pattern_id as string,
           args.dependencies as Record<string, string>,
+          env
+        );
+        break;
+
+      case "nyko_setup":
+        result = await handleSetup(
+          args.pattern_id as string,
           env
         );
         break;
