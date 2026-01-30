@@ -124,6 +124,128 @@ npm run deploy
 └─────────────────────────────────────────────────────────┘
 ```
 
+## API Reference
+
+### Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/mcp` | POST | Main MCP protocol endpoint (JSON-RPC 2.0) |
+| `/health` | GET | Health check |
+
+### Tools Reference
+
+#### nyko_search
+
+Search for patterns by keyword.
+
+**Input:**
+```json
+{
+  "query": "google oauth",
+  "category": "auth"  // optional: auth, payments, database, deploy, api
+}
+```
+
+**Output:**
+```json
+{
+  "patterns": [
+    {
+      "id": "supabase-google-oauth",
+      "name": "Google OAuth with Supabase",
+      "description": "Complete Google OAuth implementation",
+      "difficulty": "intermediate",
+      "time_estimate": "20-30 min",
+      "status": "beta"
+    }
+  ],
+  "total": 1
+}
+```
+
+#### nyko_get
+
+Get complete implementation details for a pattern.
+
+**Input:**
+```json
+{
+  "pattern_id": "supabase-google-oauth",
+  "has_src_dir": false  // optional: adjust paths for src/ directory
+}
+```
+
+**Output:**
+```json
+{
+  "pattern": {
+    "id": "supabase-google-oauth",
+    "name": "Google OAuth with Supabase",
+    "install": "npm install @supabase/supabase-js@^2.49.0 @supabase/ssr@^0.5.2",
+    "env": [{"key": "NEXT_PUBLIC_SUPABASE_URL", "required": true}],
+    "files": [{"path": "lib/supabase/client.ts", "code": "..."}],
+    "external_setup": [{"provider": "supabase", "steps": [...]}],
+    "edge_cases": [{"symptom": "...", "solution": "..."}],
+    "validation": ["Navigate to /login", "Click Google sign in"]
+  }
+}
+```
+
+#### nyko_sequence
+
+Get ordered sequence of patterns for a complete feature.
+
+**Input:**
+```json
+{
+  "goal": "google auth with protected routes",
+  "already_implemented": []  // optional: skip patterns already done
+}
+```
+
+**Output:**
+```json
+{
+  "sequence": [
+    {"order": 1, "id": "supabase-client-nextjs", "reason": "Base setup"},
+    {"order": 2, "id": "supabase-google-oauth", "reason": "Authentication"},
+    {"order": 3, "id": "supabase-protected-routes", "reason": "Route protection"}
+  ],
+  "total_time": "30-45 min"
+}
+```
+
+#### nyko_check
+
+Check pattern compatibility with project dependencies.
+
+**Input:**
+```json
+{
+  "pattern_id": "supabase-google-oauth",
+  "dependencies": {"next": "15.1.0", "@supabase/supabase-js": "2.49.0"}
+}
+```
+
+**Output:**
+```json
+{
+  "compatible": true,
+  "issues": [],
+  "missing": ["@supabase/ssr"],
+  "install_command": "npm install @supabase/ssr@^0.5.2"
+}
+```
+
+## Environment Variables
+
+```bash
+# Required for caching (optional for local dev)
+UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
+UPSTASH_REDIS_REST_TOKEN=xxx
+```
+
 ## Contributing
 
 Patterns are stored in the [nyko-ai/patterns](https://github.com/nyko-ai/patterns) repository. See the contributing guide there for adding new patterns.
