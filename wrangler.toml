@@ -2,6 +2,10 @@ name = "nyko-mcp"
 main = "src/index.ts"
 compatibility_date = "2025-01-30"
 
+[[routes]]
+pattern = "mcp.nyko.ai/*"
+zone_name = "nyko.ai"
+
 [vars]
 ENVIRONMENT = "production"
 
