@@ -1,0 +1,30 @@
+{
+  "name": "@nyko/mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Nyko - battle-tested patterns for AI coding assistants",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "@upstash/redis": "^1.34.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250124.0",
+    "@types/js-yaml": "^4.0.9",
+    "typescript": "^5.7.3",
+    "wrangler": "^3.105.0",
+    "vitest": "^2.1.8"
+  },
+  "keywords": ["mcp", "patterns", "ai", "claude", "cursor"],
+  "author": "nyko-ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyko-ai/mcp.git"
+  }
+}

@@ -1,0 +1,9 @@
+name = "nyko-mcp"
+main = "src/index.ts"
+compatibility_date = "2025-01-30"
+
+[vars]
+ENVIRONMENT = "production"
+
+# Add secrets via: wrangler secret put UPSTASH_REDIS_REST_URL
+# Add secrets via: wrangler secret put UPSTASH_REDIS_REST_TOKEN
